@@ -8,7 +8,6 @@ Para poder probar y ejecutar este backend, necesitas tener instalados los siguie
 
 - **OpenJDK 17**: La versión de Java utilizada para desarrollar y ejecutar el proyecto.
 - **MySQL**: Base de datos donde se almacenan los datos de usuarios y ventas.
-- **Gestor de Base de Datos**: Una herramienta como MySQL Workbench para gestionar y consultar la base de datos.
 - **Visual Studio Code (VSCode)**: El editor de código recomendado para trabajar con el proyecto.
 - **Extension Pack for Java**: Paquete de extensiones necesario para ejecutar proyectos Java dentro de VSCode.
 
