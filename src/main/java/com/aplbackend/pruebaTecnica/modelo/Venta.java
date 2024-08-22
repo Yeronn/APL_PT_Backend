@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = Venta.TABLE_NAME)
@@ -20,16 +21,16 @@ public class Venta {
 
     @ManyToOne
     @JoinColumn(name = "usuarioId")
-    private Usuario usuarioId;
+    private Usuario usuario;
 
-    private String fechaVenta;
+    private LocalDate  fechaVenta;
     private float totalVenta;
     
     public Venta() {
     }
-    public Venta(Long ventaId, Usuario usuarioId, String fechaVenta, float totalVenta) {
+    public Venta(Long ventaId, Usuario usuario, LocalDate fechaVenta, float totalVenta) {
         this.ventaId = ventaId;
-        this.usuarioId = usuarioId;
+        this.usuario = usuario;
         this.fechaVenta = fechaVenta;
         this.totalVenta = totalVenta;
     }
@@ -40,16 +41,16 @@ public class Venta {
     public void setVentaId(Long ventaId) {
         this.ventaId = ventaId;
     }
-    public Usuario getUsuarioId() {
-        return usuarioId;
+    public Usuario getUsuario() {
+        return usuario;
     }
-    public void setUsuarioId(Usuario usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
-    public String getFechaVenta() {
+    public LocalDate getFechaVenta() {
         return fechaVenta;
     }
-    public void setFechaVenta(String fechaVenta) {
+    public void setFechaVenta(LocalDate fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
     public float getTotalVenta() {
@@ -61,7 +62,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta [ventaId=" + ventaId + ", usuarioId=" + usuarioId + ", fechaVenta=" + fechaVenta + ", totalVenta="
+        return "Venta [ventaId=" + ventaId + ", usuarioId=" + usuario + ", fechaVenta=" + fechaVenta + ", totalVenta="
                 + totalVenta + "]";
     }
 }
