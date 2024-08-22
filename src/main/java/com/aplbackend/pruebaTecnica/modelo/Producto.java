@@ -14,23 +14,23 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productoId;
+    private Long productoId;
 
     private String nombreProducto;
     private float precio;
 
     public Producto() {
     }
-    public Producto(int productoId, String nombreProducto, float precio) {
+    public Producto(Long productoId, String nombreProducto, float precio) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
     }
     
-    public int getProductoId() {
+    public Long getProductoId() {
         return productoId;
     }
-    public void setProductoId(int productoId) {
+    public void setProductoId(Long productoId) {
         this.productoId = productoId;
     }
     public String getNombreProducto() {

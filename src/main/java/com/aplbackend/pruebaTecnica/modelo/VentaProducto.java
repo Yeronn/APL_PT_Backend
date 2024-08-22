@@ -1,9 +1,12 @@
 package com.aplbackend.pruebaTecnica.modelo;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,37 +17,43 @@ public class VentaProducto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ventaProductoId;
+    private Long ventaProductoId;
 
-    private int ventaId;
-    private int productoId;
+    @ManyToOne
+    @JoinColumn(name = "ventaId")
+    private Venta ventaId;
+
+    @ManyToOne
+    @JoinColumn(name = "productoId")
+    private Producto productoId;
+    
     private int cantidad;
     
     public VentaProducto() {
     }
-    public VentaProducto(int ventaProductoId, int ventaId, int productoId, int cantidad) {
+    public VentaProducto(Long ventaProductoId, Venta ventaId, Producto productoId, int cantidad) {
         this.ventaProductoId = ventaProductoId;
         this.ventaId = ventaId;
         this.productoId = productoId;
         this.cantidad = cantidad;
     }
     
-    public int getVentaProductoId() {
+    public Long getVentaProductoId() {
         return ventaProductoId;
     }
-    public void setVentaProductoId(int ventaProductoId) {
+    public void setVentaProductoId(Long ventaProductoId) {
         this.ventaProductoId = ventaProductoId;
     }
-    public int getVentaId() {
+    public Venta getVentaId() {
         return ventaId;
     }
-    public void setVentaId(int ventaId) {
+    public void setVentaId(Venta ventaId) {
         this.ventaId = ventaId;
     }
-    public int getProductoId() {
+    public Producto getProductoId() {
         return productoId;
     }
-    public void setProductoId(int productoId) {
+    public void setProductoId(Producto productoId) {
         this.productoId = productoId;
     }
     public int getCantidad() {

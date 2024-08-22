@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,31 +16,34 @@ public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ventaId;
+    private Long ventaId;
 
-    private int usuarioId;
+    @ManyToOne
+    @JoinColumn(name = "usuarioId")
+    private Usuario usuarioId;
+
     private String fechaVenta;
     private float totalVenta;
     
     public Venta() {
     }
-    public Venta(int ventaId, int usuarioId, String fechaVenta, float totalVenta) {
+    public Venta(Long ventaId, Usuario usuarioId, String fechaVenta, float totalVenta) {
         this.ventaId = ventaId;
         this.usuarioId = usuarioId;
         this.fechaVenta = fechaVenta;
         this.totalVenta = totalVenta;
     }
     
-    public int getVentaId() {
+    public Long getVentaId() {
         return ventaId;
     }
-    public void setVentaId(int ventaId) {
+    public void setVentaId(Long ventaId) {
         this.ventaId = ventaId;
     }
-    public int getUsuarioId() {
+    public Usuario getUsuarioId() {
         return usuarioId;
     }
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(Usuario usuarioId) {
         this.usuarioId = usuarioId;
     }
     public String getFechaVenta() {
