@@ -2,6 +2,7 @@ package com.aplbackend.pruebaTecnica.controlador;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.aplbackend.pruebaTecnica.servicio.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
+@PreAuthorize("denyAll()")
 public class UsuarioContoller {
 
     @Autowired
@@ -26,6 +28,7 @@ public class UsuarioContoller {
         return usuarioServicio.crearUsuario(usuario);
     }
 
+    @PreAuthorize("permitAll()")
     @GetMapping("/activos")
     public List<Usuario> obtenerUsuariosActivos() {
         return usuarioServicio.obtenerUsuariosActivos();
@@ -36,9 +39,9 @@ public class UsuarioContoller {
         usuarioServicio.desactivarUsuario(id);
     }
 
-    @PutMapping("/cambiarRol/{id}")
-    public Usuario cambiarRolUsuario(@PathVariable Long id, @RequestParam String nuevoRol) {
-        return usuarioServicio.cambiarRolUsuario(id, nuevoRol);
-    }
+    // @PutMapping("/cambiarRol/{id}")
+    // public Usuario cambiarRolUsuario(@PathVariable Long id, @RequestParam String nuevoRol) {
+    //     return usuarioServicio.cambiarRolUsuario(id, nuevoRol);
+    // }
 
 }

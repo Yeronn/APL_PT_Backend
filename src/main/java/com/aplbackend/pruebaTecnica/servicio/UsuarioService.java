@@ -20,22 +20,22 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public List<Usuario> obtenerUsuariosActivos() {
-        return usuarioRepositorio.findByEstado(true);
+        return usuarioRepositorio.findByState(true);
     }
 
     @Override
     public void desactivarUsuario(Long usuarioId) {
         Usuario usuario = usuarioRepositorio.findById(usuarioId)
                                             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        usuario.setEstado(false);
+        usuario.setState(false);
         usuarioRepositorio.save(usuario);
     }
 
-    @Override
-    public Usuario cambiarRolUsuario(Long usuarioId, String nuevoRol) {
-        Usuario usuario = usuarioRepositorio.findById(usuarioId)
-                                            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        usuario.setRol(nuevoRol);
-        return usuarioRepositorio.save(usuario);
-    }
+    // @Override
+    // public Usuario cambiarRolUsuario(Long usuarioId, String nuevoRol) {
+    //     Usuario usuario = usuarioRepositorio.findById(usuarioId)
+    //                                         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    //     usuario.setRol(nuevoRol);
+    //     return usuarioRepositorio.save(usuario);
+    // }
 }

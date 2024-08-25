@@ -1,6 +1,7 @@
 package com.aplbackend.pruebaTecnica.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aplbackend.pruebaTecnica.modelo.Venta;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/ventas")
+@PreAuthorize("denyAll()")
 public class VentaController {
 
     @Autowired
     VentaService ventaService;
 
+    @PreAuthorize("hasAuthority('CREATE')")
     @GetMapping("/listar")
     public List<Venta> obtenerVentas() {
         return ventaService.obtenerVentas();

@@ -1,80 +1,65 @@
 package com.aplbackend.pruebaTecnica.modelo;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name= Usuario.TABLE_NAME)
 public class Usuario {
     
-    public static final String TABLE_NAME = "usuario";
+    public static final String TABLE_NAME = "user";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usuarioId;
+    private Long id;
 
-    private String nombre;
+    @Column(unique = true)
+    private String username;
+    private String password;
+
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
     private String email;
-    private String rol;
-    private boolean estado;
+    @Column(name = "state")
+    private boolean state;
+    
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
 
-    public Usuario() {
-    }
+    @Column(name = "account_No_Expired")
+    private boolean accountNoExpired;
 
-    public Usuario(Long usuarioId, String nombre, String email, String rol, boolean estado) {
-        this.usuarioId = usuarioId;
-        this.nombre = nombre;
-        this.email = email;
-        this.rol = rol;
-        this.estado = estado;
-    }
+    @Column(name = "account_No_Locked")
+    private boolean accountNoLocked;
 
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
+    @Column(name = "credentials_No_Expired")
+    private boolean credentialsNoExpired;
 
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario [usuarioId=" + usuarioId + ", nombre=" + nombre + ", email=" + email + ", rol=" + rol
-                + ", estado=" + estado + "]";
-    }
 }

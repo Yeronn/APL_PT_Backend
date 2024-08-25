@@ -27,7 +27,7 @@ public class VentaService implements IVentaService{
 
     @Override
     public Venta registrarVenta(String nombreComprador, float totalCompra) {
-        Usuario comprador = usuarioRepositorio.findByNombre(nombreComprador).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Usuario comprador = usuarioRepositorio.findByName(nombreComprador).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Venta nuevaVenta = new Venta();
         nuevaVenta.setUsuario(comprador);

@@ -9,7 +9,7 @@ public interface IUsuarioService {
     Usuario crearUsuario(Usuario usuario);
     List<Usuario> obtenerUsuariosActivos();
     void desactivarUsuario(Long usuarioId);
-    Usuario cambiarRolUsuario(Long usuarioId, String nuevoRol);
+    // Usuario cambiarRolUsuario(Long usuarioId, String nuevoRol);
     // Usuario buscarUsuario(Long id);
     // Long borrarUsuario(Long id);
 }
