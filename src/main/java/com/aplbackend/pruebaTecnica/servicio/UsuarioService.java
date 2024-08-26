@@ -18,18 +18,18 @@ public class UsuarioService implements IUsuarioService {
         return usuarioRepositorio.save(usuario);
     }
 
-    @Override
-    public List<Usuario> obtenerUsuariosActivos() {
-        return usuarioRepositorio.findByState(true);
-    }
+    // @Override
+    // public List<Usuario> obtenerUsuariosActivos() {
+    //     return usuarioRepositorio.findByState(true);
+    // }
 
-    @Override
-    public void desactivarUsuario(Long usuarioId) {
-        Usuario usuario = usuarioRepositorio.findById(usuarioId)
-                                            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        usuario.setState(false);
-        usuarioRepositorio.save(usuario);
-    }
+    // @Override
+    // public void desactivarUsuario(Long usuarioId) {
+    //     Usuario usuario = usuarioRepositorio.findById(usuarioId)
+    //                                         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    //     usuario.setState(false);
+    //     usuarioRepositorio.save(usuario);
+    // }
 
     // @Override
     // public Usuario cambiarRolUsuario(Long usuarioId, String nuevoRol) {

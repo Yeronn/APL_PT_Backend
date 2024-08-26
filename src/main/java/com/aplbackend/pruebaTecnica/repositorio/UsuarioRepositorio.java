@@ -10,6 +10,6 @@ import com.aplbackend.pruebaTecnica.modelo.Usuario;
 
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
-    List<Usuario> findByState(boolean state);
+    // List<Usuario> findByState(boolean state);
     Optional<Usuario> findByName(String name);
 }

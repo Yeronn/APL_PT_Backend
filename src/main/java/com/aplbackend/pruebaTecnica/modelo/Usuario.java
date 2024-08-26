@@ -43,8 +43,6 @@ public class Usuario {
     private String name;
     @Column(name = "email")
     private String email;
-    @Column(name = "state")
-    private boolean state;
     
     @Column(name = "is_enabled")
     private boolean isEnabled;
